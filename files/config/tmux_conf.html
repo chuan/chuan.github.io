@@ -1,51 +1,80 @@
-# tmux config (updated Jun 3 2019 for 2.9)
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/.tmux.conf.html</title>
+<meta name="Generator" content="Vim/8.1">
+<meta name="plugin-version" content="vim8.1_v1">
+<meta name="syntax" content="tmux">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="evening">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #333333; }
+body { font-family: monospace; color: #ffffff; background-color: #333333; }
+* { font-size: 1em; }
+.Comment { color: #80a0ff; }
+.Constant { color: #ffa0a0; }
+.Special { color: #ffa500; }
+.Identifier { color: #40ffff; }
+.Statement { color: #ffff60; font-weight: bold; }
+-->
+</style>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Comment"># tmux config (updated Jun 3 2019 for 2.9)</span>
 
-bind | split-window -h
-bind - split-window -v
-unbind '"'
-unbind %
+<span class="Statement">bind</span> | <span class="Statement">split-window</span><span class="Identifier"> -h</span>
+<span class="Statement">bind</span> - <span class="Statement">split-window</span><span class="Identifier"> -v</span>
+<span class="Statement">unbind</span> <span class="Constant">'&quot;'</span>
+<span class="Statement">unbind</span> %
 
-bind -n M-Left select-pane -L
-bind -n M-right select-pane -R
-bind -n M-Up select-pane -U
-bind -n M-Down select-pane -D
+<span class="Statement">bind</span><span class="Identifier"> -n</span> <span class="Special">M-Left</span> <span class="Statement">select-pane</span><span class="Identifier"> -L</span>
+<span class="Statement">bind</span><span class="Identifier"> -n</span> <span class="Special">M-right</span> <span class="Statement">select-pane</span><span class="Identifier"> -R</span>
+<span class="Statement">bind</span><span class="Identifier"> -n</span> <span class="Special">M-Up</span> <span class="Statement">select-pane</span><span class="Identifier"> -U</span>
+<span class="Statement">bind</span><span class="Identifier"> -n</span> <span class="Special">M-Down</span> <span class="Statement">select-pane</span><span class="Identifier"> -D</span>
 
-set-option -g allow-rename off
-set-option -g visual-activity off
-set-option -g visual-bell off
-set-option -g visual-silence off
-set-option -g bell-action none
+<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">allow-rename</span> <span class="Constant">off</span>
+<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">visual-activity</span> <span class="Constant">off</span>
+<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">visual-bell</span> <span class="Constant">off</span>
+<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">visual-silence</span> <span class="Constant">off</span>
+<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">bell-action</span> <span class="Constant">none</span>
 
-set-window-option -g monitor-activity off
+<span class="Statement">set-window-option</span><span class="Identifier"> -g</span> <span class="Identifier">monitor-activity</span> <span class="Constant">off</span>
 
-set -g default-terminal "screen-256color"
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">default-terminal</span> <span class="Constant">&quot;screen-256color&quot;</span>
 
-## DESIGN CHANGES
+<span class="Comment">## DESIGN CHANGES</span>
 
-# statusbar
-#set -g status-interval 2
-set -g status-position bottom
-set -g status-style 'bg=colour234,fg=colour137,dim'
-set -g status-left ''
-set -g status-right '#[fg=colour233,bg=colour241,bold] %d/%m #[fg=colour233,bg=colour245,bold] %H:%M:%S '
-set -g status-right-length 50
-set -g status-left-length 20
+<span class="Comment"># statusbar</span>
+<span class="Comment">#set -g status-interval 2</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-position</span> bottom
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-style</span> <span class="Constant">'bg=colour234,fg=colour137,dim'</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-left</span> <span class="Constant">''</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-right</span> <span class="Constant">'#[fg=colour233,bg=colour241,bold] %d/%m #[fg=colour233,bg=colour245,bold] %H:%M:%S '</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-right-length</span> <span class="Constant">50</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-left-length</span> <span class="Constant">20</span>
 
-# messaging
-set -g message-style "fg=black,bg=yellow"
-set -g message-command-style "fg=blue,bg=black"
+<span class="Comment"># messaging</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">message-style</span> <span class="Constant">&quot;fg=black,bg=yellow&quot;</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">message-command-style</span> <span class="Constant">&quot;fg=blue,bg=black&quot;</span>
 
-# panes
-set -g pane-border-style "bg=colour235,fg=colour238"
-set -g pane-active-border-style "bg=colour236,fg=colour51"
+<span class="Comment"># panes</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">pane-border-style</span> <span class="Constant">&quot;bg=colour235,fg=colour238&quot;</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">pane-active-border-style</span> <span class="Constant">&quot;bg=colour236,fg=colour51&quot;</span>
 
-# window mode
-setw -g window-status-current-style "fg=colour81,bg=colour238,bold"
-setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour50]#F '
-setw -g window-status-style "fg=colour138,bg=colour235,none"
-setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
-setw -g window-status-bell-style "fg=colour255,bg=colour1,bold"
+<span class="Comment"># window mode</span>
+<span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">window-status-current-style</span> <span class="Constant">&quot;fg=colour81,bg=colour238,bold&quot;</span>
+<span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">window-status-current-format</span> <span class="Constant">' </span><span class="Identifier">#I</span><span class="Constant">#[fg=colour250]:#[fg=colour255]</span><span class="Identifier">#W</span><span class="Constant">#[fg=colour50]</span><span class="Identifier">#F</span><span class="Constant"> '</span>
+<span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">window-status-style</span> <span class="Constant">&quot;fg=colour138,bg=colour235,none&quot;</span>
+<span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">window-status-format</span> <span class="Constant">' </span><span class="Identifier">#I</span><span class="Constant">#[fg=colour237]:#[fg=colour250]</span><span class="Identifier">#W</span><span class="Constant">#[fg=colour244]</span><span class="Identifier">#F</span><span class="Constant"> '</span>
+<span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">window-status-bell-style</span> <span class="Constant">&quot;fg=colour255,bg=colour1,bold&quot;</span>
 
-# modes
-setw -g clock-mode-colour colour135
-setw -g mode-style "fg=colour196,bg=colour238,bold"
+<span class="Comment"># modes</span>
+<span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">clock-mode-colour</span> colour135
+<span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">mode-style</span> <span class="Constant">&quot;fg=colour196,bg=colour238,bold&quot;</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
