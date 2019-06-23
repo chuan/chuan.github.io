@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>Java Quiz</title>
+    </head>
+
+
+    <body>
+        <h1>Java Quiz</h1>
+
+        <p>最近Java用的比较多。关于Java的一些问题。</p>
+
+<p>（一） 下面这个程序有什么问题？</p>
+<pre class="code">
+public static void rotate(List&lt;?&gt; list) {
+    if (list.size() == 0)
+        return;
+    list.add(list.remove(0));
+}
+</pre>
+
+<p>（二） 下面这个程序打印的结果是什么？</p>
+<pre class="code">
+public class ShortSet {
+    public static void main(String args[]) {
+        Set&lt;Short&gt; s = new HashSet&lt;Short&gt;();
+        for (short i = 0; i &lt; 100; i++) {
+            s.add(i);
+            s.remove(i - 1);
+        }
+        System.out.println(s.size());
+    }
+}
+</pre>
+<p>(A) 1<br />(B) 100<br />(C) 抛出异常<br />(D) 以上都不是</p>
+
+
+<p>（三）下面这个程序打印Ground Round的频率？</p>
+<pre class="code">
+public class Round {
+    public static void main(String[] args) {
+        Random rnd = new Random();
+        int i = rnd.nextInt();
+        if (Math.round(i) != i)
+            System.out.println("Ground Round");
+    }
+}
+</pre>
+<p>(A) 从不<br />(B) 有时<br />(C) 差不多每一次<br />(D) 每一次</p>
+
+<p>（四） 下面这个程序打印的结果是什么？</p>
+<pre class="code">
+public class Hamlet {
+    public static void main(String[] args) {
+        Random rnd = new Random();
+        boolean toBe = rnd.nextBoolean();
+        Number result = (toBe || !toBe) ?
+            new Integer(3) : new Float(1);
+        System.out.println(result);
+    }
+}
+</pre>
+<p>(A) 3<br />(B) 1.0<br />(C) 抛出异常<br />(D) 以上都不是</p>
+
+
+<p>（五） 下面这个程序打印的结果是什么？</p>
+<pre class="code">
+public class Elvis {
+    // Singleton pattern: there's only one Elvis
+    public static final Elvis ELVIS = new Elvis();
+    private Elvis() { }
+    private static final Boolean LIVING = true;
+    private final Boolean alive = LIVING;
+    public final Boolean lives() { return alive; }
+    public static void main(String[] args) {
+        System.out.println(ELVIS.lives() ?
+            "Hound Dog" : "Heartbreak Hotel");
+    }
+}
+</pre>
+<p>(A) Hound Dog<br />(B) Heartbreak Hotel<br />(C) 不确定<br />(D) 以上都不是</p><p>正确答案：</p>
+<p>第一个因为add和remove是两个操作，它们都只知道自己操作对象的类型是「?」而推断不出它们是在对同样类型的对象进行操作。于是系统在编译时会给出错误。</p>
+<p>2-5: B C D D。</p>
+<p>二：因为Set的类型是Short，但是我们移除的是Integer。</p>
+<p>三：96.7%的时间。全是float的错，用double会安全很多。</p>
+<p>四：输出的结果是3.0。起因是「? : 」操作符的奇怪定义。</p>
+<p>五：你会得到NullPointerException。类初始化的问题。</p>
+<p>更详细的解释可以参考reference。</p>
+<p><b>Reference:</b></p>
+<ol>
+<li><a href="http://developers.sun.com/learning/javaoneonline/2007/pdf/TS-2689.pdf">Effective Java Reloaded: This Time It's for Real</a><br />
+by Joshua Bloch, Google, Inc.</li>
+
+<li><a href="http://developers.sun.com/learning/javaoneonline/2007/pdf/TS-2707.pdf">	
+Java Puzzlers Episode VI: The Phantom-Reference Menace/Attack of the Clone/Revenge of the Shift</a><br />
+by Joshua Bloch, Google, Inc. and William Pugh, Univ. of Maryland</li>
+</ol>
+
+<p>- <i>Written on Sat Dec 29 04:52:07 2007.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

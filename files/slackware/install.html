@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>Slackware Installation Notes</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2008-10-21 23:49:51 EDT"/>
+<meta name="author" content="chuan"/>
+<style type="text/css">
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color:lightblue; font-weight:normal }
+  .target { }
+  .timestamp { color: grey }
+  .timestamp-kwd { color: CadetBlue }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+
+</style>
+</head><body>
+<h1 class="title">Slackware Installation Notes</h1>
+
+<p>This notes record my experience with Slackware Linux version 12.0. I
+had used Linux/Unix for many years, however, Slackware the first
+time. The system is installed on a Samsung NX10 notebook. I will deal
+things that concerns me most from my previous experience
+(e.g. wireless, i18n, power management, package management).
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Update (May 2008)</a></li>
+<li><a href="#sec-2">2 Package Management</a></li>
+<li><a href="#sec-3">3 Power Management</a></li>
+<li><a href="#sec-4">4 Graphics</a></li>
+<li><a href="#sec-5">5 Setting the Locale</a></li>
+<li><a href="#sec-6">6 Setting the Wireless</a></li>
+<li><a href="#sec-7">7 Fonts &amp; Input</a></li>
+<li><a href="#sec-8">8 Misc.</a></li>
+<li><a href="#sec-9">9 Comments</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">1 Update (May 2008)</h2>
+<div id="text-1">
+
+<p>On May 3rd, slackware 12.1 come out. ipw2100 firmware and scim are
+now included in official packages.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">2 Package Management</h2>
+<div id="text-2">
+
+<p>The package management tool is 'pkgtool'.  Dependency management is
+left up to the sysadmin. To upgrade a package officially released by
+Slackware, use the 'upgradepkg' command. I guess that's the first
+thing you wish to do after the installation since there's a kernel
+exploit recently.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">3 Power Management</h2>
+<div id="text-3">
+
+<p>Slackware 12.0 by default hasn't include the ACPI DSDT in initrd
+patch in its kernel source. The patch can be found at:
+</p>
+<p>
+<a href="http://gaugusch.at/kernel.shtml">http://gaugusch.at/kernel.shtml</a>
+</p>
+<p>
+Apply the patch and re-compile the kernel. You also need a DSDT
+compiler from Intel:
+</p>
+<p>
+<a href="http://www.intel.com/technology/IAPC/acpi/downloads.htm">http://www.intel.com/technology/IAPC/acpi/downloads.htm</a>
+</p>
+<p>
+After building the compiler, compile the DSDT table:
+</p>
+<p>
+<pre class="example">
+ iasl -tc [DSDT file]
+</pre>
+</p>
+<p>
+Then append your output to the kernel initrid image.
+</p>
+<p>
+Another way is to compile the DSDT table into kernel instead of
+loading upon boot. I am getting lazy now &ndash; maybe that's why I choose
+Slackware &ndash; so I just use the generic kernel and don't bother myself
+into configuring a customized kernel now.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">4 Graphics</h2>
+<div id="text-4">
+
+<p>My laptop's graphic card is Nvidia GeForce4 440 Go. The driver I am
+using is the binary driver provided by nvidia (96.43.05).
+</p>
+<p>
+To enable suspend function, add the following option to the driver.
+</p>
+<p>
+<pre class="example">
+ Option "NvAGP" "1"
+</pre>
+</p>
+<p>
+For double screens support, enable the 'TwinView' option.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">5 Setting the Locale</h2>
+<div id="text-5">
+
+<p>Basically to set locale, we only need to set two (or less) environment
+variables, namely "LANG" and/or "LC<sub>ALL</sub>".  The global setting of
+locale in Slackware is at (depending on what shell you are using):
+</p>
+<p>
+<pre class="example">
+ /etc/profile.d/lang.sh
+ /etc/profile.d/lang.csh
+</pre>
+</p>
+<p>
+For terminal Unicode support, you may wish to use rxvt-unicode:
+</p>
+<p>
+<a href="http://software.schmorp.de/pkg/rxvt-unicode.html">http://software.schmorp.de/pkg/rxvt-unicode.html</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6">6 Setting the Wireless</h2>
+<div id="text-6">
+
+<p>My laptop's wireless card is using a Intel chip, and the driver is
+available at: <a href="http://ipw2100.sourceforge.net/">http://ipw2100.sourceforge.net/</a>.  Four things are
+required for install the driver &ndash; 2.6.8+ kernel, wireless tools,
+ipw2100 driver, ipw2100 firmware.  Slackware provided the former
+three, and we only need to install the firmware. Download from the
+previous website, put the firmware in /lib/firmware and that's
+it. The setting for wireless is located at:
+</p>
+<p>
+<pre class="example">
+ /etc/rc.d/rc.wireless.conf
+</pre>
+</p>
+<p>
+p.s. The Slackware current also contains the firmware package
+(ipw2200-fw-3.0-fw-1).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7">7 Fonts &amp; Input</h2>
+<div id="text-7">
+
+<p>I use Wenquanyi fonts which are free and good. Find yours at:
+</p>
+<p>
+<a href="http://wqy.sourceforge.net/">http://wqy.sourceforge.net/</a>
+</p>
+<p>
+The Emacs (21.4) in the Slackware seems have problem using Wenquanyi
+fonts. Nevertheless the default fonts 'Fangsong Ti' can be used in
+Emacs for Chinese display and no configuration is needed.
+</p>
+<p>
+I also used MonteCarlo fonts for programming which are located at:
+</p>
+<p>
+<a href="http://www.bok.net/MonteCarlo/">http://www.bok.net/MonteCarlo/</a>
+</p>
+<p>
+For (Chinese) input, I use scim (pinyin) which can be found at:
+</p>
+<p>
+<a href="http://www.scim-im.org/">http://www.scim-im.org/</a>
+</p>
+<p>
+After the default installation (./configure &amp;&amp; make &amp;&amp; make
+install), you need to do some more. Modify the line in
+'/etc/gtk-2.0/gtk.immodules' from
+</p>
+<p>
+<pre class="example">
+ "xim" "X input Method" "gtk20" "/usr/share/locale" "ko:ja:th:zh"
+</pre>
+</p>
+<p>
+to
+</p>
+<p>
+<pre class="example">
+ "xim" "X input Method" "gtk20" "/usr/share/locale" "ko:ja:th:zh:en"
+</pre>
+</p>
+<p>
+Also the following lines need to be added to the xinit config file.
+</p>
+<p>
+<pre class="example">
+ export XMODIFIERS="@im=SCIM"
+ export GTK_IM_MODULE=xim
+ export QT_IM_MODULE=xim
+ /usr/local/bin/scim -d
+</pre>
+</p>
+<p>
+To use scim within Emacs, you need to install mule-ucs and add the
+following into '.emacsrc'.
+</p>
+<p>
+<pre class="example">
+ (require 'mucs)
+ (require 'un-define)
+ (prefer-coding-system 'utf-8)
+ (set-language-environment 'utf-8)
+</pre>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8">8 Misc.</h2>
+<div id="text-8">
+
+<p>A fast slackware mirror in China:
+</p>
+<p>
+<a href="http://mirror.lzu.edu.cn/os/slackware/">http://mirror.lzu.edu.cn/os/slackware/</a>
+</p>
+<p>
+Two good slackware repository:
+</p>
+<p>
+<a href="http://repository.slacky.eu">http://repository.slacky.eu</a>
+</p>
+<p>
+<a href="http://www.slackware.com/~alien/slackbuilds/">http://www.slackware.com/~alien/slackbuilds/</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9">9 Comments</h2>
+<div id="text-9">
+
+<p>Slackware has a very simple way to manage packages. The package
+manager does not check for dependency information. This may sound
+strange to users of Debian, Ubuntu, Gentoo, Arch etc. which all have
+the ability to trace the underling libraries for every software
+package. Even RPM-based Redhad and Fedora now have the 'yum' tool to
+solve the package dependency issues.
+</p>
+<p>
+What Slackware package manager (SPM) does if it not check for
+dependency? SPM's only duty is package installation and removal and
+no others. A Slackware package is very simple. It is only a gziped
+tar archive whose content is the layout of the software or library
+on the system and sometimes include a description and install script
+(no package dependency information or what so ever). When you
+install a package, SPM records the files installed and changes made
+to the system. Later when you want to remove the package, SPM uses
+its record to clean all the installed files and roll back the
+changes ever made during the install of the package.
+</p>
+<p>
+Slackware's philosophy is the UNIX's KISS. Slackware provide you a
+full functional and minimal system (of cuz, full function is by
+slack's definition) and all other things is left for user to do. My
+way to maintain the system is also quite simple. For the software
+not provided by Slackware, I downloaded the source and find all
+possible missing libraries and compile them. I then made a Slackware
+package for each my self compiled software or library, and install
+them using SPM. I also keep a log for all the software and their
+dependent library I installed. When someday I want to delete the
+software, I will delete those packages in SPM myself and update my
+log.
+</p>
+
+</div>
+</div>
+<div id="postamble"><p class="author"> Author: chuan
+<a href="mailto:liuchuan [at] liuchuan.org">&lt;liuchuan [at] liuchuan.org&gt;</a>
+</p>
+<p class="date"> Date: 2008-10-21 23:49:51 EDT</p>
+<p>HTML generated by org-mode 6.09a in emacs 22</p>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</div></body>
+</html>

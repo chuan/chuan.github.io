@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/.vimrc.html</title>
+<meta name="Generator" content="Vim/8.1">
+<meta name="plugin-version" content="vim8.1_v1">
+<meta name="syntax" content="vim">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="evening">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #333333; }
+body { font-family: monospace; color: #ffffff; background-color: #333333; }
+* { font-size: 1em; }
+.Constant { color: #ffa0a0; }
+.Special { color: #ffa500; }
+.Identifier { color: #40ffff; }
+.PreProc { color: #ff80ff; }
+.Type { color: #60ff60; font-weight: bold; }
+.Comment { color: #80a0ff; }
+.Statement { color: #ffff60; font-weight: bold; }
+.Normal { color: #ffffff; background-color: #333333; padding-bottom: 1px; }
+-->
+</style>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Comment">&quot; Chuan's vim config</span>
+<span class="Comment">&quot; Part are adopted from the example config at:</span>
+<span class="Comment">&quot; /usr/share/vim/vim64/vimrc_example.vim</span>
+<span class="Comment">&quot; Last modifid: Jun 2019</span>
+
+<span class="Comment">&quot; First install vim-plug (<a href="https://github.com/junegunn/vim-plug)">https://github.com/junegunn/vim-plug)</a> via the following command:</span>
+<span class="Comment">&quot; Unix</span>
+<span class="Comment">&quot;   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \</span>
+<span class="Comment">&quot;       <a href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim">https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</a></span>
+<span class="Comment">&quot; Windows (PowerShell)</span>
+<span class="Comment">&quot;   md ~\vimfiles\autoload</span>
+<span class="Comment">&quot;   $uri = '<a href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim">https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</a>'</span>
+<span class="Comment">&quot;   (New-Object Net.WebClient).DownloadFile(</span>
+<span class="Comment">&quot;     $uri,</span>
+<span class="Comment">&quot;     $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(</span>
+<span class="Comment">&quot;       </span><span class="Constant">&quot;~\vimfiles\autoload\plug.vim&quot;</span>
+<span class="Comment">&quot;     )</span>
+<span class="Comment">&quot;   )</span>
+
+<span class="Comment">&quot; Initialize plugin system</span>
+<span class="Statement">call</span> plug#<span class="Normal">begin</span><span class="Special">(</span><span class="Constant">'~/.vim/plugged'</span><span class="Special">)</span>
+
+<span class="Comment">&quot; The NERD tree: file explorer</span>
+Plug <span class="Constant">'scrooloose/nerdtree'</span>
+<span class="Statement">map</span> <span class="Special">&lt;</span><span class="Special">C-n</span><span class="Special">&gt;</span> :NERDTreeToggle<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+
+<span class="Comment">&quot; vim-aireline: enhanced status bar</span>
+Plug <span class="Constant">'vim-airline/vim-airline'</span>
+<span class="Statement">let</span> <span class="Identifier">g:airline_theme</span><span class="Statement">=</span><span class="Constant">'dark'</span>
+
+<span class="Comment">&quot; Javascript</span>
+Plug <span class="Constant">'pangloss/vim-javascript'</span>
+Plug <span class="Constant">'elzr/vim-json'</span>
+
+<span class="Comment">&quot; Golang</span>
+Plug <span class="Constant">'fatih/vim-go'</span>
+
+<span class="Statement">call</span> plug#<span class="Normal">end</span><span class="Special">()</span>
+
+
+<span class="Comment">&quot; Use Vim settings, rather then Vi settings (much better!).</span>
+<span class="Comment">&quot; This must be first, because it changes other options as a side effect.</span>
+<span class="Comment">&quot; Also required by Vundle</span>
+<span class="Statement">set</span> <span class="PreProc">nocompatible</span>
+
+<span class="Comment">&quot; Enable filetype setting</span>
+<span class="Statement">filetype</span> <span class="Type">plugin</span> <span class="Type">on</span>
+<span class="Statement">filetype</span> <span class="Type">indent</span> <span class="Type">on</span>
+
+<span class="Comment">&quot; Enable highlight</span>
+<span class="Statement">syntax</span> <span class="Type">on</span>
+
+<span class="Comment">&quot; No backup files with ~ suffix</span>
+<span class="Statement">set</span> <span class="PreProc">nobackup</span>
+
+<span class="Comment">&quot; Use utf8 as default</span>
+<span class="Statement">set</span> <span class="PreProc">encoding</span>=utf-8 <span class="Comment">&quot; vim internal encoding</span>
+<span class="Statement">set</span> <span class="PreProc">fileencoding</span>=utf-8 <span class="Comment">&quot; new file encoding</span>
+
+<span class="Comment">&quot; Get function usage help automatically</span>
+<span class="Statement">set</span> <span class="PreProc">showfulltag</span>
+<span class="Comment">&quot; Show matching parentheses/brackets</span>
+<span class="Statement">set</span> <span class="PreProc">showmatch</span>
+<span class="Comment">&quot; Show current vim mode</span>
+<span class="Statement">set</span> <span class="PreProc">showmode</span>
+
+<span class="Comment">&quot; Set backgoud</span>
+<span class="Statement">set</span> <span class="PreProc">background</span>=dark
+
+<span class="Comment">&quot; Allow backspacing over everything in insert mode</span>
+<span class="Statement">set</span> <span class="PreProc">bs</span>=2
+<span class="Comment">&quot; Don't include character under cursor in selection</span>
+<span class="Statement">set</span> <span class="PreProc">selection</span>=exclusive
+<span class="Comment">&quot; Use a scrollable menu for filename completions</span>
+<span class="Statement">set</span> <span class="PreProc">wildmenu</span>
+<span class="Comment">&quot; Case-insensitive searching</span>
+<span class="Statement">set</span> <span class="PreProc">ignorecase</span>
+
+<span class="Comment">&quot; Indentation</span>
+<span class="Statement">set</span> <span class="PreProc">et</span>
+<span class="Statement">set</span> <span class="PreProc">ts</span>=2
+<span class="Statement">set</span> <span class="PreProc">sw</span>=2
+<span class="Statement">set</span> <span class="PreProc">autoindent</span>
+<span class="Statement">set</span> <span class="PreProc">smartindent</span>
+
+<span class="Comment">&quot; Show line numbers</span>
+<span class="Comment">&quot;   F12 = turn on/off line numbers</span>
+<span class="Statement">map</span> <span class="Special">&lt;</span><span class="Special">F12</span><span class="Special">&gt;</span> :set nu!<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+
+<span class="Comment">&quot; Allow backspacing over everything in insert mode</span>
+<span class="Statement">set</span> <span class="PreProc">backspace</span>=indent<span class="Statement">,</span>eol<span class="Statement">,</span><span class="Statement">start</span>
+
+<span class="Statement">set</span> <span class="PreProc">history</span>=50    <span class="Comment">&quot; keep 50 lines of command line history</span>
+<span class="Statement">set</span> <span class="PreProc">ruler</span>   <span class="Comment">&quot; show the cursor position all the time</span>
+<span class="Statement">set</span> <span class="PreProc">showcmd</span>   <span class="Comment">&quot; display incomplete commands</span>
+<span class="Statement">set</span> <span class="PreProc">incsearch</span>   <span class="Comment">&quot; do incremental searching</span>
+
+<span class="Comment">&quot; Don't use Ex mode, use Q for formatting</span>
+<span class="Statement">map</span> Q gq
+
+<span class="Comment">&quot; Switch syntax highlighting on, when the terminal has colors</span>
+<span class="Comment">&quot; Also switch on highlighting the last used search pattern.</span>
+<span class="Statement">if</span> &amp;t_Co <span class="Statement">&gt;</span> <span class="Constant">2</span> <span class="Statement">||</span> <span class="Identifier">has</span><span class="Special">(</span><span class="Constant">&quot;gui_running</span><span class="Constant">&quot;</span><span class="Special">)</span>
+  <span class="Statement">set</span> <span class="PreProc">hlsearch</span>
+<span class="Statement">endif</span>
+
+<span class="Statement">if</span> <span class="Identifier">has</span><span class="Special">(</span><span class="Constant">&quot;gui_running</span><span class="Constant">&quot;</span><span class="Special">)</span>
+  <span class="Statement">colorscheme</span> evening
+  :<span class="Statement">set</span> <span class="PreProc">guioptions</span>-=m
+  :<span class="Statement">set</span> <span class="PreProc">guioptions</span>-=T
+  :<span class="Statement">set</span> <span class="PreProc">guioptions</span>-=r
+  :<span class="Statement">set</span> <span class="PreProc">guioptions</span>-=L
+  <span class="Statement">if</span> <span class="Identifier">has</span><span class="Special">(</span><span class="Constant">&quot;win32</span><span class="Constant">&quot;</span><span class="Special">)</span>
+    <span class="Statement">set</span> <span class="PreProc">fileencodings</span>=ucs-bom<span class="Statement">,</span>utf-8<span class="Statement">,</span>latin1
+    <span class="Statement">set</span> <span class="PreProc">guifont</span>=Consolas<span class="Statement">:</span>h10<span class="Statement">:</span>cANSI
+  <span class="Statement">elseif</span> <span class="Identifier">has</span><span class="Special">(</span><span class="Constant">&quot;mac</span><span class="Constant">&quot;</span><span class="Special">)</span>
+    <span class="Statement">set</span> <span class="PreProc">guifont</span>=<span class="Constant">&quot;SF Mono&quot;</span>
+  <span class="Statement">else</span>
+    <span class="Statement">set</span> <span class="PreProc">guifont</span>=Hack\ 10
+  <span class="Statement">endif</span>
+<span class="Statement">endif</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

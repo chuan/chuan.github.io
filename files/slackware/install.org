@@ -1,0 +1,164 @@
+#+TITLE: Slackware Installation Notes
+#+AUTHOR: chuan
+#+EMAIL: liuchuan [at] liuchuan.org
+
+This notes record my experience with Slackware Linux version 12.0. I
+had used Linux/Unix for many years, however, Slackware the first
+time. The system is installed on a Samsung NX10 notebook. I will deal
+things that concerns me most from my previous experience
+(e.g. wireless, i18n, power management, package management).
+
+* Update (May 2008)
+  On May 3rd, slackware 12.1 come out. ipw2100 firmware and scim are
+  now included in official packages.
+
+* Package Management
+  The package management tool is 'pkgtool'.  Dependency management is
+  left up to the sysadmin. To upgrade a package officially released by
+  Slackware, use the 'upgradepkg' command. I guess that's the first
+  thing you wish to do after the installation since there's a kernel
+  exploit recently.
+
+* Power Management
+  Slackware 12.0 by default hasn't include the ACPI DSDT in initrd
+  patch in its kernel source. The patch can be found at:
+
+	http://gaugusch.at/kernel.shtml
+
+  Apply the patch and re-compile the kernel. You also need a DSDT
+  compiler from Intel:
+
+	http://www.intel.com/technology/IAPC/acpi/downloads.htm
+
+  After building the compiler, compile the DSDT table:
+
+	: iasl -tc [DSDT file]
+
+  Then append your output to the kernel initrid image.
+
+  Another way is to compile the DSDT table into kernel instead of
+  loading upon boot. I am getting lazy now -- maybe that's why I choose
+  Slackware -- so I just use the generic kernel and don't bother myself
+  into configuring a customized kernel now.
+
+* Graphics
+  My laptop's graphic card is Nvidia GeForce4 440 Go. The driver I am
+  using is the binary driver provided by nvidia (96.43.05).
+
+  To enable suspend function, add the following option to the driver.
+
+	: Option "NvAGP" "1"
+
+  For double screens support, enable the 'TwinView' option.
+
+* Setting the Locale
+  Basically to set locale, we only need to set two (or less) environment
+  variables, namely "LANG" and/or "LC_ALL".  The global setting of
+  locale in Slackware is at (depending on what shell you are using):
+
+	: /etc/profile.d/lang.sh
+	: /etc/profile.d/lang.csh
+
+  For terminal Unicode support, you may wish to use rxvt-unicode:
+
+	http://software.schmorp.de/pkg/rxvt-unicode.html
+
+* Setting the Wireless
+  My laptop's wireless card is using a Intel chip, and the driver is
+  available at: http://ipw2100.sourceforge.net/.  Four things are
+  required for install the driver -- 2.6.8+ kernel, wireless tools,
+  ipw2100 driver, ipw2100 firmware.  Slackware provided the former
+  three, and we only need to install the firmware. Download from the
+  previous website, put the firmware in /lib/firmware and that's
+  it. The setting for wireless is located at:
+
+	: /etc/rc.d/rc.wireless.conf
+
+  p.s. The Slackware current also contains the firmware package
+  (ipw2200-fw-3.0-fw-1).
+
+* Fonts & Input
+  I use Wenquanyi fonts which are free and good. Find yours at:
+
+	http://wqy.sourceforge.net/
+
+  The Emacs (21.4) in the Slackware seems have problem using Wenquanyi
+  fonts. Nevertheless the default fonts 'Fangsong Ti' can be used in
+  Emacs for Chinese display and no configuration is needed.
+
+  I also used MonteCarlo fonts for programming which are located at:
+
+	http://www.bok.net/MonteCarlo/
+
+  For (Chinese) input, I use scim (pinyin) which can be found at:
+
+	http://www.scim-im.org/
+
+  After the default installation (./configure && make && make
+  install), you need to do some more. Modify the line in
+  '/etc/gtk-2.0/gtk.immodules' from
+
+  : "xim" "X input Method" "gtk20" "/usr/share/locale" "ko:ja:th:zh"
+
+  to
+
+  : "xim" "X input Method" "gtk20" "/usr/share/locale" "ko:ja:th:zh:en"
+
+  Also the following lines need to be added to the xinit config file.
+
+  : export XMODIFIERS="@im=SCIM"
+  : export GTK_IM_MODULE=xim
+  : export QT_IM_MODULE=xim
+  : /usr/local/bin/scim -d
+
+  To use scim within Emacs, you need to install mule-ucs and add the
+  following into '.emacsrc'.
+
+  : (require 'mucs)
+  : (require 'un-define)
+  : (prefer-coding-system 'utf-8)
+  : (set-language-environment 'utf-8)
+
+* Misc.
+  A fast slackware mirror in China:
+
+	http://mirror.lzu.edu.cn/os/slackware/
+
+  Two good slackware repository:
+
+  http://repository.slacky.eu
+
+  http://www.slackware.com/~alien/slackbuilds/
+
+* Comments
+  Slackware has a very simple way to manage packages. The package
+  manager does not check for dependency information. This may sound
+  strange to users of Debian, Ubuntu, Gentoo, Arch etc. which all have
+  the ability to trace the underling libraries for every software
+  package. Even RPM-based Redhad and Fedora now have the 'yum' tool to
+  solve the package dependency issues.
+
+  What Slackware package manager (SPM) does if it not check for
+  dependency? SPM's only duty is package installation and removal and
+  no others. A Slackware package is very simple. It is only a gziped
+  tar archive whose content is the layout of the software or library
+  on the system and sometimes include a description and install script
+  (no package dependency information or what so ever). When you
+  install a package, SPM records the files installed and changes made
+  to the system. Later when you want to remove the package, SPM uses
+  its record to clean all the installed files and roll back the
+  changes ever made during the install of the package.
+
+  Slackware's philosophy is the UNIX's KISS. Slackware provide you a
+  full functional and minimal system (of cuz, full function is by
+  slack's definition) and all other things is left for user to do. My
+  way to maintain the system is also quite simple. For the software
+  not provided by Slackware, I downloaded the source and find all
+  possible missing libraries and compile them. I then made a Slackware
+  package for each my self compiled software or library, and install
+  them using SPM. I also keep a log for all the software and their
+  dependent library I installed. When someday I want to delete the
+  software, I will delete those packages in SPM myself and update my
+  log.
+
+

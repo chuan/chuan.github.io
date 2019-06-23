@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>10个好的UINX（命令行）使用习惯</title>
+    </head>
+
+
+    <body>
+        <h1>10个好的UINX（命令行）使用习惯</h1>
+
+        <p>IBM网站上的<a href="http://www.ibm.com/developerworks/aix/library/au-badunixhabits.html">一篇技术文章</a>。看了一下，还不错。虽然很多我都知道，但用的时候还是忘记。基本上，命令行用的好能事半功倍，用不好就比图形界面还花时间。其实关键不是命令行，而是使用命令行的人。凡事预则立，不预则废。敲命令行之前最好稍微用用脑子。下面是我自己经常忘记的几个。</p>
+<p>一、新建目录的时候的便捷方法。</p>
+<pre class="code">
+~ $ mkdir -p project/{lib/ext,bin,src,doc,demo}
+</pre>
+<p>二、解压缩的时候不用移动压缩文档。</p>
+<pre class="code">
+~ $ tar xvf -C tmp/a/b/c newarc.tar.gz
+</pre>
+<p>九、匹配表式输出结果的某一列时用Awk（而非用grep去搜索某一行）。</p>
+<pre class="code">
+~/tmp $ ls -l | awk '$6 == "Dec"'
+-rw-r--r--  3 joe joe   5096 Dec 14 14:26 archive.tar
+-rw-r--r--  1 root root  238 Dec 03 08:19 README
+~/tmp $
+</pre>
+<p>第二条我还可以补充一些。解压gzip压缩过的tar加z，bzip2压缩过的tar用j。解压之前最好先看看档案文件的内容。有些档案文件里面文档都是直接打包的，解压出来根目录乱乱的一大堆文件，更糟的是还有重名目录。</p>
+<pre class="code">
+~$ tar ztvf backup.tgz 
+-rw-r--r-- sam/sam  2370 2008-01-14 15:27 .vimrc
+-rw-r--r-- sam/sam  4554 2008-03-06 10:51 .emacs
+drwxr-xr-x sam/sam     0 2008-03-06 10:43 .emacs.d/
+-rw-r--r-- sam/sam   633 2008-02-26 15:01 .Xresources
+-rw-r--r-- sam/sam  2619 2008-03-05 15:40 .bashrc
+-rw-r--r-- sam/sam   126 2007-12-14 20:38 .bash_aliases
+</pre>
+
+
+
+<p>- <i>Written on Thu Mar  6 05:35:25 2008.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

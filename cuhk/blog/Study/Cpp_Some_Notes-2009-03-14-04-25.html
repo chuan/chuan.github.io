@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>C++: Some Notes</title>
+    </head>
+
+
+    <body>
+        <h1>C++: Some Notes</h1>
+
+        <p>I don't use C++ that often. Here are some notes kept as a remainder for my own.</p>
+<ul>
+<li>In many C++ books, like "C++ Programming Language", pointer are of the format "type* foo" instead of "type *foo" as in C.</li>
+<li>Initializing variables inside a class definition are only allowed for enumeration types or integral types, e.g. int, char, long, etc. For example, the following declaration is not allowed.<br />
+<pre class="code">
+ class Foo
+ {
+   public:
+     static char bar[10] = "abcdefghi";
+ };
+</pre></li>
+<li>When to use auto_ptr?
+<blockquote>
+<p>Many resources are dynamically allocated on the heap, are used only within a single block or function, and should be released when control leaves that block or function.</p>
+<p>...</p>
+<p>Because an auto_ptr automatically deletes what it points to when the auto_ptr is destroyed, it's important that there never be more than one auto_ptr pointing to an object.</p>
+</blockquote></li>
+<li>The only difference between struct and class is the default access level: public for formmer and private for latter.</li>
+<li>No object can be created for abstract classes.</li>
+<li>The declaration of struct, union, class, or enum adds the type to the type names.</li>
+<li>With direct initialization, an integer can be initialized as "int a(10);".</li>
+<li>In an assignment-like initializer, if the object is of class type, the value to the right of the equal sign is converted to a temporary object of desired type, and the first object is costructed by calling its copy constructor.</li>
+</ul>
+<p>- <i>Written on Sat Mar 14 04:25:48 2009.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

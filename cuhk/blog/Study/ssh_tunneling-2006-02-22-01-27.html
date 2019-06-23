@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>用SSH Tunneling突破防火墙</title>
+    </head>
+
+
+    <body>
+        <h1>用SSH Tunneling突破防火墙</h1>
+
+        <p>
+如题。</p>
+<p>
+这样就可以使用P2P，rsync等被防火墙禁止的服务了。</p>
+<p>
+举一个例，如何设置<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty">Putty</a>和<a href="http://azureus.sourceforge.net/">Azureus</a>。</p>
+<p>
+在Putty->Connection->SSH->Tunnels里选择Port forwarding的两个选项。</p>
+<ul>
+<li>Local ports accept connections from other hosts</li>
+<li>Remote ports do the same(SSH-2 only)</li>
+</ul>
+<p>
+Source port栏填任意的一个数字。
+Destination栏填localhost。最后的选项里选择Dynamic和Auto。
+然后点击Add。</p>
+<p>
+回到Putty->Session，登陆服务器。这时tunnel就已经建立了。
+</p>
+<p>
+然后在Azureus->Connection->Proxy Options里选择Tracker Communication的两个选项：</p>
+<ul>
+<li>Enable proxying of tracker communications[restart required]</li>
+<li>I have a SOCKS proxy</li>
+</ul>
+<p>
+Host栏填localhost。Port栏填之前Putty里Source port中填的数字。
+然后Peer Communications中选择下面两个选项。</p>
+<ul>
+<li>Enable proxying of peer communications(outgoing connections only)[restart required]</li>
+<li>Use same proxy setting for tracker and peer communications only</li>
+</ul>
+<p>
+重新启动Azureus，应该就可以使用了。</p>
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

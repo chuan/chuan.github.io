@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>重写blog系统</title>
+    </head>
+
+
+    <body>
+        <h1>重写blog系统</h1>
+
+        <p>用了一段时间typo这个基于Ruby on Rails的blog系统，觉得比较复杂，不适合我这个有minimalism倾向的人。而且觉得RoR盛名之下，其实难负。我一直感觉这种完全自动化的web framework是在用数据库表格的重复换取coding的方便（我就不相信rational database和object-oriented这两个完全不同领域不同理念下的东西可以无缝衔接）。我自己只有二十几篇文本文档的blog系统的数据库居然迅速膨胀到12M。于是我用Python写了个新的blog系统，重建了数据库，导入了原来的数据。新的数据库只有几百K。</p>
+<p>Python这个编程语言也不得不赞一个。整个blog系统只用了不到300行代码。引用一段<a href="http://www.python.org/dev/peps/pep-0020/">Python的哲学</a>。</p>
+<blockquote>
+<pre>
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+...
+</pre>
+</blockquote>
+<p>感觉Python这每一点都是针对C++说的。不过我的Python程序写出来大概是ugly+explicit+simple。说实话我真怀疑有既美观又实用的程序代码。</p>
+
+
+
+<p>- <i>Written on Wed Jan 23 12:02:32 2008.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

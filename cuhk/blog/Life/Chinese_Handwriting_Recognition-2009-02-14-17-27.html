@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>Chinese Handwriting Recognition</title>
+    </head>
+
+
+    <body>
+        <h1>Chinese Handwriting Recognition</h1>
+
+        <p>Some random thoughts on Chinese handwriting recognition:</p>
+<ul>
+<li>This problem appears to me more interesting than speech recognition. Chinese (Mandarin or Cantonese) recognition in general has no difference with English recognition. Handwriting, on the other hand, makes a huge difference. Think about the amount of Chinese character and roman character. Another interesting observation is that there are quite a lot dialects or spoken languages in China while the writing is almost the same: simplified Chinese for mainland; traditional for Taiwan, Hong Kong, and some other areas.</li>
+<li>There are some commercialized software on market. There is even a <a href="http://www.forbes.com/global/2008/1027/062a.html">Korea Internet company</a> developed <a href="http://www.nciku.com">online dictionary</a> accepting handwriting as input. The open sourced solution for this problem is very rare. I can list a few from Japan originally for recognizing Kanji, e.g. <a href="http://tomoe.sourceforge.jp">tomoe</a>, <a href="http://tegaki.sourceforge.net/">Tegaki</a> (based on <a href="http://zinnia.sourceforge.net/">Zinnia</a>). Considering Japanese also having katakana and hiragana, this problem is actually more appealing to Chinese.</li>
+<li>The problem is not hard to solve. I can easily think of several methods, e.g. based on stroke classification and ordering, or feature based pattern matching. The difficult part is data sparsity. It is relatively hard to get training data for all Chinese characters no matter what methods is used. The number of characters I guess is more than 100,000.</li>
+<li>I can think of some practical ways to work around the lack of training data. For example, wubi (five strokes) input method has the mapping between character to the five stroke order. Another good data maybe the bitmap font files. Chinese bitmap font essentially are font images to characters mapping. The images may be used for pattern matching.</li>
+<li>Another direction is to incorporate language model like in speech recognition system. Actually most pinyin based input methods are using some kinds language model. The good pinyin input method often results from a good vocabulary frequency table which is essentially a language model. So it is no wonder two internet search engine, Google and Sogou, are supplying the two most successful Chinese input methods.</li>
+<li>I am also thinking another recognition problem: handwriting math formula recognition. Since handwriting formula is much quick er than typing (thinking LaTex or Office formula editor). More thoughts on this to be filled next time...</li>
+</ul>
+
+
+<p>- <i>Written on Sat Feb 14 17:27:01 2009.</i></p>
+
+<p>There is a handwriting math formula recognition demo:
+http://www.cs.rit.edu/~rlaz/#research<br />
+- <i>Reply from Y. Shao on Tue Feb 17 04:55:41 2009</i></p>
+<!-- | -->
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

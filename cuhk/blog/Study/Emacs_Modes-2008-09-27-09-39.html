@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>Emacs Modes</title>
+    </head>
+
+
+    <body>
+        <h1>Emacs Modes</h1>
+
+        <p>用slackware，基本什么都要自己来装。包括emacs和LaTeX（slack现在还坚持用tetex）的各种非核心package。这也是我欣赏slack的一点。emacs和LaTeX的package本来就像是插件，应该是用户自己装的东西啊。但是很多发行版帮用户把软件的插件都给放在发行版的软件里一起维护了。不知道会不会到时候连firefox的插件也进入了发行版的软件列表。</p>
+<p>很久没有用emacs了。最近又把emacs各种杂碎拾起来了。列个表供以后参考。</p>
+<ul>
+<li><b>MULE:</b> 支持UTF-8。似乎现在22以后版本已经支持UTF8了，不过我的情况是mule似乎还是好用一点。</li>
+<li><b>CPerl:</b> 这个比普通的perl模式好用太多了，而且是自带的。（为什么不用这个把原来的换掉算了？）</li>
+<li><b>python-mode:</b> 这个也不错。不过要自己安装。</li>
+<li><b>matlab:</b> 似乎就两个文件。shell比我想的要好用。估计matlab对Emacs做了优化？</li>
+<li><b>AUCTeX:</b> 这个是我用emacs的主要原因之一。</li>
+<li><b>JDEE:</b> 这个模式是最让我不爽的，不过编辑Java也只有这个了。用了Subversion里最新的文件才编译成功（似乎支持JDK 1.6）。需要<a href="http://www.gnu.org/software/elib/">elib</a>（一个似乎完全被抛弃的软件）和<a href="http://cedet.sourceforge.net/">CEDET</a>。另外编译完成以后还要把jde.jar加到java/lib目录下去。</li>
+<li><b>org-mode:</b> 最近才开始用：组织自己时间，计划......我自己很难用好。很多时候，我的办法是把一切东西都装在脑子里。</li>
+<li><b>slime:</b> 用人为了用这个模式而学lisp吗？这种类似买椟还珠的事我还真做过。本来对lisp只是大概了解，不是很上心。但是有一次看一个同学用这个模式给我演示了一下怎么写lisp程序就被雷到了。后来又特别看书学了一下lisp，就为了用这个模式。</li>
+<li>Misc.: nXML, Muse, etc.</li>
+</ul>
+<p>备份的地址：<a href="http://www.liuchuan.org/files/config/emacs.html">.emacs</a></p>
+<p>不过Emacs用多了真是会上瘾啊。有人说Emacs是一个伪装成编辑器的操作系统（an operating system masquerading as an editor）不是没有道理啊。有一个笑话叫<a href="http://xkcd.com/378/">real programmer use butterflies</a>。</p>
+<p><b>Update 1</b>: <a href="http://www.liuchuan.org/files/config/Xresources.html">Xresources</a>。</p>
+<p><b>Update 2</b>: Learned something from this <a href="http://platypope.org/yada/emacs-demo/">Emacs demo</a>, including ido mode.</p>
+<p><b>Update 3</b>: Give up JDEE. Cannot debug.</p>
+<p>- <i>Written on Sat Sep 27 09:39:31 2008.</i></p>
+
+<p>org-mode我拿来做笔记用，用来计划还是太繁琐了点<br />
+- <i>Reply from dk on Thu Oct  9 14:38:30 2008</i></p>
+<!-- dkisdonkey@gmail.com|nullfield.org -->
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

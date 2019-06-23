@@ -1,0 +1,60 @@
+/* Liu Chuan's homepage layout (white background) */
+/* Update on Jan 2008 */
+
+
+body {
+  width: 500px;
+  margin: 0;
+  border: 0;
+  padding: 50px;
+  background: #fff;
+  color: #000;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+h1 { font-size: 18px; }
+
+h1.notice {
+    color: #ff0000
+}
+
+h2 { font-size: 14px; }
+
+a {
+  text-decoration: none;
+  color: #6c0;
+  padding-bottom: 1px;
+  border-bottom: 1px solid #666;
+}
+
+a:hover { border-bottom: 1px solid #06f; }
+
+a:visited { color: #3c0; }
+
+li {
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+dd {
+  margin-left: 6px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+pre {
+  font-family: "Consolas", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace;
+  font-size: 11px;
+}
+
+pre.code {
+  color: #acd373;
+  background: #444;
+}
+
+blockquote {
+  width: 480px;
+  color: #666;
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- Created by htmlize-1.36 in css mode. -->
+<html>
+  <head>
+    <title>.emacs</title>
+    <style type="text/css">
+    <!--
+      body {
+        color: #fff8dc;
+        background-color: #000000;
+      }
+      .comment {
+        /* font-lock-comment-face */
+        color: #ffd700;
+      }
+      .comment-delimiter {
+        /* font-lock-comment-delimiter-face */
+        color: #ffd700;
+      }
+      .constant {
+        /* font-lock-constant-face */
+        color: #fa8072;
+      }
+      .keyword {
+        /* font-lock-keyword-face */
+        color: #00ffff;
+      }
+      .string {
+        /* font-lock-string-face */
+        color: #ffa500;
+      }
+
+      a {
+        color: inherit;
+        background-color: inherit;
+        font: inherit;
+        text-decoration: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    -->
+    </style>
+  </head>
+  <body>
+    <pre>
+<span class="comment-delimiter">;; </span><span class="comment">Chuan's emacs customization file for Ubuntu
+</span><span class="comment-delimiter">;; </span><span class="comment">Last modified: 2011
+</span>
+
+<span class="comment-delimiter">;; </span><span class="comment">The following modes are installed using Ubuntu package manager:
+</span><span class="comment-delimiter">;;</span><span class="comment">
+</span><span class="comment-delimiter">;;   </span><span class="comment">slime
+</span><span class="comment-delimiter">;;</span><span class="comment">
+</span>
+<span class="comment-delimiter">;; </span><span class="comment">The following modes are installed by 'emacs-goodies-el' package
+</span><span class="comment-delimiter">;;</span><span class="comment">
+</span><span class="comment-delimiter">;;   </span><span class="comment">htmlize
+</span><span class="comment-delimiter">;;   </span><span class="comment">xrdb-mode
+</span><span class="comment-delimiter">;;   </span><span class="comment">browse-kill-ring
+</span><span class="comment-delimiter">;;   </span><span class="comment">matlab
+</span><span class="comment-delimiter">;;   </span><span class="comment">
+</span>
+<span class="comment-delimiter">;; </span><span class="comment">Some other modes maintained on my own:
+</span><span class="comment-delimiter">;;</span><span class="comment">
+</span><span class="comment-delimiter">;;</span><span class="comment">
+</span>
+
+<span class="comment-delimiter">;;; </span><span class="comment">add load-path
+</span><span class="comment-delimiter">;;; </span><span class="comment">several single file modes put direct under the path
+</span>(setq load-path (cons <span class="string">"~/.emacs.d/site-lisp"</span> load-path))
+
+<span class="comment-delimiter">;;; </span><span class="comment">set default encoding and language enviroment to utf-8
+</span>(prefer-coding-system 'utf-8)
+(set-language-environment 'utf-8)
+
+<span class="comment-delimiter">;; </span><span class="comment">show line and column number
+</span>(line-number-mode t)
+(column-number-mode t)
+
+<span class="comment-delimiter">;;; </span><span class="comment">set short key for undo
+</span>(global-set-key [(ctrl backspace)] 'undo)
+
+<span class="comment-delimiter">;;; </span><span class="comment">ido mode for buffer switch and find file
+</span>(<span class="keyword">require</span> '<span class="constant">ido</span>)
+(ido-mode t)
+
+<span class="comment-delimiter">;;; </span><span class="comment">anything.el: QuickSilver for Emacs
+</span>(<span class="keyword">require</span> '<span class="constant">linkd</span>)
+(<span class="keyword">require</span> '<span class="constant">anything</span>)
+
+<span class="comment-delimiter">;;; </span><span class="comment">brower kill ring
+</span>(<span class="keyword">require</span> '<span class="constant">browse-kill-ring</span>)
+(browse-kill-ring-default-keybindings)
+
+<span class="comment-delimiter">;;; </span><span class="comment">spell checking on fly
+</span>(<span class="keyword">require</span> '<span class="constant">flyspell</span>)
+(add-to-list 'auto-mode-alist '(<span class="string">"\\.txt$"</span> . flyspell-mode))
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+
+<span class="comment-delimiter">;;; </span><span class="comment">cperl-mode is preferred to perl-mode
+</span>(mapc
+ (<span class="keyword">lambda</span> (pair)
+   (<span class="keyword">if</span> (eq (cdr pair) 'perl-mode)
+       (setcdr pair 'cperl-mode)))
+ (append auto-mode-alist interpreter-mode-alist))
+
+<span class="comment-delimiter">;;; </span><span class="comment">cc-mode
+</span>(<span class="keyword">require</span> '<span class="constant">cc-mode</span>)
+
+<span class="comment-delimiter">;;; </span><span class="comment">slime
+</span>(<span class="keyword">require</span> '<span class="constant">slime</span>)
+(slime-setup)
+
+
+<span class="comment-delimiter">;;; </span><span class="comment">org-mode
+</span>(setq load-path (cons <span class="string">"~/.emacs.d/site-lisp/org-mode/lisp"</span> load-path))
+(setq load-path (cons <span class="string">"~/.emacs.d/site-lisp/org-mode/contrib/lisp"</span> load-path))
+(<span class="keyword">require</span> '<span class="constant">org-install</span>)
+(add-to-list 'auto-mode-alist '(<span class="string">"\\.org\\'"</span> . org-mode))
+(global-set-key <span class="string">"\C-cl"</span> 'org-store-link)
+(global-set-key <span class="string">"\C-ca"</span> 'org-agenda)
+(global-set-key <span class="string">"\C-cb"</span> 'org-iswitchb)
+(org-remember-insinuate)
+(setq org-directory <span class="string">"~/notes"</span>)
+(setq org-default-notes-file (concat org-directory <span class="string">"/default.org"</span>))
+(define-key global-map <span class="string">"\C-cr"</span> 'org-remember)
+(setq org-export-with-LaTeX-fragments t)
+(setq org-remember-templates '((?b <span class="string">"* TODO READ: %?%a\n"</span>)))
+(setq org-agenda-exporter-settings
+      '((ps-number-of-columns 2)
+        (ps-landscape-mode t)
+        (htmlize-output-type 'css)))
+
+
+<span class="comment-delimiter">;;; </span><span class="comment">other misc. variables in  Emacs
+</span>(custom-set-variables
+  <span class="comment-delimiter">;; </span><span class="comment">custom-set-variables was added by Custom.
+</span>  <span class="comment-delimiter">;; </span><span class="comment">If you edit it by hand, you could mess it up, so be careful.
+</span>  <span class="comment-delimiter">;; </span><span class="comment">Your init file should contain only one such instance.
+</span>  <span class="comment-delimiter">;; </span><span class="comment">If there is more than one, they won't work right.
+</span> '(c-basic-offset 2)
+ '(default-input-method <span class="string">"chinese-tonepy-punct"</span>)
+ '(flyspell-sort-corrections t)
+ '(indent-tabs-mode nil)
+ '(inferior-lisp-program <span class="string">"/usr/bin/sbcl"</span>)
+ '(make-backup-files nil)
+ '(nil nil t)
+ '(tab-width 2)
+ '(truncate-lines t)
+ '(truncate-partial-width-windows t)
+ '(warning-suppress-types (quote ((\(undo\ discard-info\))))))
+
+
+(custom-set-faces
+  <span class="comment-delimiter">;; </span><span class="comment">custom-set-faces was added by Custom.
+</span>  <span class="comment-delimiter">;; </span><span class="comment">If you edit it by hand, you could mess it up, so be careful.
+</span>  <span class="comment-delimiter">;; </span><span class="comment">Your init file should contain only one such instance.
+</span>  <span class="comment-delimiter">;; </span><span class="comment">If there is more than one, they won't work right.
+</span> )
+</pre>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </body>
+</html>

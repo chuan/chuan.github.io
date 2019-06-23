@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>Ubuntu使用记</title>
+    </head>
+
+
+    <body>
+        <h1>Ubuntu使用记</h1>
+
+        <p>Linux系统我用过很多，包括Gentoo、Debian、Redhat、Fedora Core等等。</p>
+<p>可以说Gentoo除了非常非常耗时的编译过程，是我之前最喜欢的Linux发行版。不过没有编译过程的话，Gentoo和其它系统还有什么区别呢？Gentoo就像是LFS+portage（Gentoo的package manager）。犹如LFS的自由灵活加上portage这个与dpkg（Debian的package manager）相比毫不逊色的系统大概是我喜欢Gentoo的原因。除了Gentoo的编译，在我看来，各大Linux发行版的最大区别就是软件包管理（package management）。</p>
+<p>其余的主流Linux基本都是基于binary package的。FC和Suse等系统因为历史原因包管理就没有Debian做的好。Debian诞生时的最大特色就是把各个软件包的依赖关系问题完美解决了。FC和Suse最近似乎在这个方面在改进，好像FC采用了Yum。但是Debian从诞生起就有的先天优势还是很明显的。用Debian升级，进入aptitude，uUg三个键就完成了，而且做了什么一目了然。软件包哪些是自动安装的，哪些是指定安装的，都有记录，将来要卸载某些软件，自动安装的包也会自动卸载掉。</p>
+<p>但是Debian有一个Drawback，更新过慢。这到不是因为Debian的维护人员不够勤力，而是Debian的严格的软件包更新机制决定的。一个软件要进入stable状态，要进入漫长的从unstable到testing，再frozen然后stable的过程。一般大概需要1－2年时间。在开源软件这个日新月异的时间，这个过程实在是太慢了。我记得好像Linux Kernel 2.6稳定版大概是2003年末公布的，但是debian直到07年初的4.0 etch中才正式将2.6版的kernel作为stable使用。这只是kernel，更多其它软件就难以计数了。其实Debian这样做也不是没有原因的。Debian出现的时候，Linux主要用于server和workstation。而对这些系统而言稳定和安全才是首位的。相对而言花哨的用户界面和图形化的操作并不那么重要。</p>
+<p>Ubuntu的出现可以说是利用了Debian的的这一缺点。Ubuntu使用了Debian的软家包管理工具，但是加快了开发周期，大量使用cutting-edge的软件。这样虽然损失了一定的稳定性，但是大大改进了作为桌面系统的易用性。我最近使用了一段时间Ubuntu，感觉使用上简单如Windows。而加上xgl、compiz、beryl等软件包后，界面华丽也堪比甚至超过Mac OS X。可以说Ubuntu是一个非常适合桌面电脑使用的操作系统。</p>
+
+
+<p>- <i>Written on Sat Mar  1 04:43:19 2008.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

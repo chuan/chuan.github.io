@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>blog系统的一些问题</title>
+    </head>
+
+
+    <body>
+        <h1>blog系统的一些问题</h1>
+
+        <p><a href="http://www.liuchuan.org/cuhk/blog/Study/blog_rewritten-2008-01-23-12-02/">当初</a>写了这个简单的blog系统。很多问题没有仔细考虑。最近又把code改了一下。现在把目前想到的问题总结一下。</p>
+<p>Search。最开始用的是latin1存储中文，用like搜索中文好像没问题。现在换成utf8了以后遇到了中文搜索的问题（具体参考MySQL的文档：<a href="http://dev.mysql.com/doc/refman/5.1/en/faqs-cjk.html#qandaitem-24-11-12">A.11 MySQL 5.1 FAQ 24.11.12</a>）。中文全文检索我还没想好怎么弄。特别是有dreamhost shared host的限制。</p>
+<p>分页和归档。现在的分页和归档都把全部文章显示出来，应该只显示相关的部分。这个似乎比较简单。</p>
+<p>管理。现在只有一个简单的添加文章的界面。删除文章和留言我都是用mysql的命令行进行的。如果要完善这个blog系统的话似乎要添加一个更强大的管理界面。</p>
+
+<p>- <i>Written on Mon Jan 12 08:50:26 2009.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

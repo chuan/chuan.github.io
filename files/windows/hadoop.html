@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="Development Environment Setup For Hadoop on Windows" />
+<title>Development Environment Setup For Hadoop on Windows</title>
+</head>
+
+
+<body>
+<h1>Development Environment Setup For Hadoop 1.0 on Windows</h1>
+
+<h2>Java Installation</h2>
+<p>Download JDK installer for Windows at the following address:</p>
+<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
+<p>(Use JDK 1.6 is recommended for Hadoop 1.0 release.)</p>
+
+<h2>Ant Instllation</h2>
+<p>Download Apache Ant binary distribution in .zip format at the following address:</p>
+<p>
+<a href="http://archive.apache.org/dist/ant/binaries/">http://archive.apache.org/dist/ant/binaries/</a></p>
+<p>(Ant 1.7 is recommended for Hadoop 1.0 build.)</p>
+<p>Extract the zip to the location where you want Ant to be installed. For this instruction, the following location is used:</p>
+<pre>C:\Java</pre>
+<p>After this, Ant binaries should be available at:</p>
+<pre>C:\Java\apache-ant-[version]\bin</pre>
+<p><b>Note:</b> you may run into some bugs if the installation path contains spaces, e.g. the default directory 'Program Files'.</p>
+
+<h2>Cygwin Installation (Optional)</h2>
+<p>Download and run the latest Cygwin installer at:</p>
+<p><a href="http://cygwin.com/setup.exe">http://cygwin.com/setup.exe</a></p>
+
+<h2>Set PATH</h2>
+<p>Add a JAVA_HOME system environment variable with following value:</p>
+<pre>C:\Java\jdk1.6.0_32</pre>
+<p>Add an ANT_HOME system environment variable with the following value:</p>
+<pre>C:\Java\apache-ant-1.7.1</pre>
+<p>Add a PATH user environment variable with the following value:</p>
+<pre>%PATH%;%JAVA_HOME%\bin;%ANT_HOME%\bin;%USERPROFILE%\bin</pre>
+<p>Copy necessary Unix tools to %USERPROFILE%\bin. The following tools are used for now:</p>
+<ul><li>sh</li><li>sed</li><li>echo</li><li>gzip</li><li>tar</li></ul>
+<p>They are available from Cygwin installation at previous step. Other options may include MinGw, GnuWin32, etc.</p>
+
+<h2>Build</h2>
+<p>After path is set, we can build Hadoop Common from "Visual Studio Command Prompt" with the following command.</p>
+<pre>ant -Dwindows=true clean ms-package</pre>
+
+<h2>Eclipse</h2>
+<p>Dowload an Eclipse package from the website. Classic is used in this guide.</p>
+<a href="http://www.eclipse.org/">http://www.eclipse.org/</a>
+<p>Extract the package to a location. The following location is used for this guide.</p>
+<pre>C:\Java</pre>
+<p>Generate Eclipse config files using 'eclipse' task, i.e.</p>
+<pre>ant eclipse</pre>
+<p>Open Eclipse. Set the workspace directory to the parent folder of hadoop-common folder. For example, we can have hadoop-common code in folder 'core', and 'workspace' folder contains 'core'. In this case, we need to set Eclipse workspace to 'workspace'.</p>
+<p>Create a new Java project via Eclipse menu: File - New - Java Project</p>
+<p>Enter project name as the hadoop-common folder name, e.g. 'core'. Click next.</p>
+<p>In the 'Source' tab windows, browse to: 'src\webapps'. Right click and select 'Use as Source Folder'.</p>
+<p>In the 'Libraries' tab, click 'Add External Jars...'. Add tools.jar from JDK as an external Jar; 'tools.jar' can be found at JAVA_HOME\lib.</p>
+<p>Open menu: Window - Preferences. In 'Java - Build Path - Classpath Variables', create a new variable 'ANT_HOME' with value of Ant installation location in the previous step.</p>
+<p>The Eclipse environment is set up now.</p>
+
+<!-- script for Google -->
+<!--
+-->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
+

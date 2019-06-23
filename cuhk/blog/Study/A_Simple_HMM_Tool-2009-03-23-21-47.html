@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>A Simple HMM Tool</title>
+    </head>
+
+
+    <body>
+        <h1>A Simple HMM Tool</h1>
+
+        <p>I recently implemented a simple C program for hidden Markov model.  For the HMM notations, I follows the classic paper "A tutorial on Hidden Markov Models and selected applications in speech recognition" by L. Rabiner.  The solutions to the three problems introduced in the paper are all implemented.  However there is no continuous output densities estimation, no optimization for sparse transition matrix, or any other fancy stuff.  For the simple task, it is much faster than <a href="http://www.cs.ubc.ca/~murphyk/Software/HMM/hmm.html">the MATLAB implementation</a> (on single core).</p>
+<p>The source is here: <a href="http://code.google.com/p/chmm/">chmm</a>.</p>
+<p><b>Update 1:</b> I recently found that MATLAB can take advantage of multi-core. On multi-core machine and with more data, MATLAB actually runs faster.</p>
+
+<p><b>Update 2:</b> a CUDA implementation is also added to the site.</p>
+
+
+<p>- <i>Written on Mon Mar 23 21:47:06 2009.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

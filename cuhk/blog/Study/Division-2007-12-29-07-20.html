@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>怎么作除法</title>
+    </head>
+
+
+    <body>
+        <h1>怎么作除法</h1>
+
+        <p>考虑下面的程序。printf 输出了什么结果？</p>
+<pre class="code">
+  1 #include &lt;stdio.h&gt;
+  2 
+  3 int main() {
+  4   unsigned low = 1;
+  5   unsigned high = 4294967295U;
+  6   unsigned mid = (low + high) / 2;
+  7   printf("%u\n", mid);
+  8   return 0;
+  9 }
+</pre>
+<p><b>答案是0。</b></p>
+<p>因为4294967295 = 2<sup>32</sup> - 1，所以第6行出现了overflow。如果把第6行换成：</p>
+<pre class="code">
+  6   unsigned mid = low + (high - low)  / 2;
+</pre>
+<p>mid就会等于正确的：2147483648。</p>
+<p>用>> 1代替/ 2，这个错误还是一样会出现。顺便提一句，据说很多binary search的程序都因为这个小错误而存在bug。另外编程时如果遇到很长的四则混合运算也要小心设计运算的先后顺序，避免可能出现的overflow的情况。</p>
+
+
+<p>- <i>Written on Sat Dec 29 07:20:30 2007.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>Uncertainty in Debugging</title>
+    </head>
+
+
+    <body>
+        <h1>Uncertainty in Debugging</h1>
+
+        <p>This situation has happened to me several times recently: I was testing my program using some testing data. Part of my program output was not compatible with the correct testing result. So I began inspecting my code and reasoning the potential problems in my design. Then I did find several vital flaws in my code. However after correcting those errors, the output still seem wrong. The previous flaws in the source code made me lose confidence about my code and become fearful about other bugs I may overlook. Then I began to test the code piece by piece. The process may take a very long time, and even worse after tested every single part of the program, it turned out every single piece seem to work correctly. Nevertheless the output of the whole program still differed from the correct ones. Many times the differences were rather weird. Finally when I almost gave up, it turned out somehow the testing data is not correct at all. After altering the testing data, the output of my program turned to be perfect. What about those vital errors found with the wrong testing data? Would my code also work without modifying those errors? I did not know. I just simply did not want to go back and test again so long as my code agreed with the "correct" testing data.</p>
+<p>Lessons learned:</p>
+<ul>
+<li>Reasoning without any data can still correct bugs in code (when you strongly believe your code is wrong).</li>
+<li>Testing data may also be wrong (since those are also compelled by man).</li>
+</ul>
+
+
+
+
+<p>- <i>Written on Sat Apr 18 20:15:34 2009.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Data Collection Notes</title>
+<!-- 2016-04-18 Mon 20:27 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Data Collection Notes</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Pilot Cities</a></li>
+<li><a href="#sec-2">2. Indicator</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Human Capital</a></li>
+<li><a href="#sec-2-2">2.2. Research and Development Institutions</a></li>
+<li><a href="#sec-2-3">2.3. Financial Capital</a></li>
+<li><a href="#sec-2-4">2.4. Physical Infrastructure</a></li>
+<li><a href="#sec-2-5">2.5. Industrial Base</a></li>
+<li><a href="#sec-2-6">2.6. Legal and Regulatory Environment</a></li>
+<li><a href="#sec-2-7">2.7. Quality of Life</a></li>
+<li><a href="#sec-2-8">2.8. Networking assets</a></li>
+<li><a href="#sec-2-9">2.9. Culture</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. APIs</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Google Maps API</a></li>
+<li><a href="#sec-3-2">3.2. Factual</a></li>
+<li><a href="#sec-3-3">3.3. OpenStreetMap (OSM)</a></li>
+<li><a href="#sec-3-4">3.4. AngelList</a></li>
+<li><a href="#sec-3-5">3.5. Visa/Master ATM location APIs</a></li>
+<li><a href="#sec-3-6">3.6. TripAdvisor</a></li>
+<li><a href="#sec-3-7">3.7. Linkedin</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Pilot Cities</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>Dar es Salaam (dar)
+</li>
+<li>Singapore (sin)
+</li>
+<li>NYC (nyc)
+</li>
+<li>San Francisco (sfo)
+</li>
+<li>London (lon)
+</li>
+<li>Seoul (sel)
+</li>
+<li>Manila (man)
+</li>
+<li>Shanghai (sha)
+</li>
+<li>Kampala (kam)
+</li>
+<li>Doha (doh)
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Indicator</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Human Capital</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>Star-ups at city level.
+<ul class="org-ul">
+<li>AngelList works.
+</li>
+<li>The location is tag based. Some companies have mutiple
+locations. The tag may just mean the company has office in the
+city.
+</li>
+</ul>
+</li>
+<li>Education level of founders and presidents from AngelList
+<ul class="org-ul">
+<li>Not available from the API.
+</li>
+<li>Linkedin is not reliable.
+</li>
+<li>It may be possible to crawl the data from AngelList website.
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Research and Development Institutions</h3>
+<div class="outline-text-3" id="text-2-2">
+<ol class="org-ol">
+<li>"University" and "research institute" in Google Maps. 
+<ul class="org-ul">
+<li>We can use OSM as an alternative.
+</li>
+</ul>
+</li>
+<li>"Assignee" for cities in Google Patent API at a given time
+peridod.
+<ul class="org-ul">
+<li>Google patent seach API is deprecated.
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Financial Capital</h3>
+<div class="outline-text-3" id="text-2-3">
+<ol class="org-ol">
+<li>"Bank branch" in Google Map API.
+<ul class="org-ul">
+<li>We can use OSM as alternative.
+</li>
+</ul>
+</li>
+<li>"ATM machine" in Google Map API or Visa Global ATM Locator API.
+<ul class="org-ul">
+<li>We can use OSM and factual as alternative. Visa and Master API
+access is pending apporval
+</li>
+</ul>
+</li>
+<li>We can have number of investors on AngelList.
+<ul class="org-ul">
+<li>AngelList allows futher restricting the search to 'by
+residence' or 'by activity'.
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Physical Infrastructure</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+"railway station and subway station" at city level in Google Map API
+</p>
+<ul class="org-ul">
+<li>We can use OSM and factual data.
+</li>
+<li>There is no distinction between bus/train station or platfrom in
+OSM data.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Industrial Base</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+"Computer Service" for IT industry at city level in Google Maps API
+</p>
+<ul class="org-ul">
+<li>We can use OSM and factual data.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> Legal and Regulatory Environment</h3>
+<div class="outline-text-3" id="text-2-6">
+<ol class="org-ol">
+<li>Doing Business ranking
+<ul class="org-ul">
+<li>?
+</li>
+</ul>
+</li>
+<li>Text-mining from the other team in T&amp;C
+<ul class="org-ul">
+<li>?
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> Quality of Life</h3>
+<div class="outline-text-3" id="text-2-7">
+<ol class="org-ol">
+<li>City level household surveys on durable goods (TV, Radio etc.)
+and housing quality from LSMS
+<ul class="org-ul">
+<li>?
+</li>
+</ul>
+</li>
+<li>Average real estate price/city household annual income (Wharton
+database)
+<ul class="org-ul">
+<li>?
+</li>
+</ul>
+</li>
+<li>“restaurant” with rating over 3 of 5 in Google Maps API or
+TripAdvisor (Rate Limits: 1000 calls per day)
+<ul class="org-ul">
+<li>TripAdvisor API is not allowed for data analysis. We can
+directly craw data from the webpage though. This is no more
+different than a search engine index the public webpages.
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> Networking assets</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+Number of “Connections” of founders identified in AngelList with
+cross-check from Linkedin
+</p>
+<ul class="org-ul">
+<li>There is no connections on AngelList.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> Culture</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+Number of “position” history of founders identified in AngelList
+with cross-check from Linkedin
+</p>
+<ul class="org-ul">
+<li>There is no position history of founders.
+</li>
+<li>There is an 'Advisor' role in AngelList.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> APIs</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Google Maps API</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>The radar API has 200 result limit.
+</li>
+<li>The full text search API is not very accurate, e.g. seaching for
+"ATM in New York" yields about 390 results.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Factual</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>The API allows search for a given city.
+</li>
+<li>It does not cover all the pilot cites.
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> OpenStreetMap (OSM)</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>In general, I like this data because it is open and in raw
+format. Open means anyone can contribute to the data. Raw format
+allows performing all sorts of queries not limited by any given
+APIs.
+</li>
+<li>The API may be not very accurate in certain categories as it is
+created on a voluntary basis.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> AngelList</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Access requested.
+</li>
+<li>Approved.     
+</li>
+<li>The data may be not accruate for non-western cities.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Visa/Master ATM location APIs</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>Visa and Master API need application for production use. (Sandbox
+API does not return real results.)
+<ul class="org-ul">
+<li><a href="https://developer.visa.com/products/atmlocator/reference">https://developer.visa.com/products/atmlocator/reference</a>
+</li>
+<li><a href="https://developer.mastercard.com/portal/display/api/Locations">https://developer.mastercard.com/portal/display/api/Locations</a>
+</li>
+</ul>
+</li>
+<li>Visa requested.
+</li>
+<li>Master requested.
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> TripAdvisor</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+<a href="https://developer-tripadvisor.com/content-api/request-api-access/">https://developer-tripadvisor.com/content-api/request-api-access/</a>
+</p>
+
+<p>
+TripAdvisor grants only a limited number of API keys, and does not allow access to the Content API for purposes of:
+</p>
+<ul class="org-ul">
+<li>Data analysis
+</li>
+<li>Academic research
+</li>
+<li>Any use not associated with a consumer-facing (B2C) travel website or application
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> Linkedin</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+<a href="https://developer.linkedin.com/legal/api-terms-of-use">https://developer.linkedin.com/legal/api-terms-of-use</a>
+</p>
+
+<p>
+API is resitrcted for app development that will be helpful to Linkedin users.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2016-04-18 Mon 20:27</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

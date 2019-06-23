@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>听Michael Stonebraker讲数据库</title>
+    </head>
+
+
+    <body>
+        <h1>听Michael Stonebraker讲数据库</h1>
+
+        <p>今天去听了Michael Stonebraker的seminar。几乎全场坐满。讲到数据库市场细分，如果追求性能的话，就需要用特别设计的数据库引擎代替现有的一揽子解决方案（"one size fits all"）。举了三个例子。</p>
+<p>一个是面向data warehouses市场，用column store代替row store的数据库。他们的商业产品<a href="http://www.vertica.com">vertica</a>在市场上一些应用领域，性能超过现在主流DBMS上百倍。如果考虑到更高的数据压缩比例和更低的硬件配置，这种效应可以更进一步放大。对应的学术产品是<a href="http://db.csail.mit.edu/projects/cstore/">C-Store</a>，也是vertica的前身。</p>
+<p>第二个是完全运行于内存里的OLTP database。也是在性能上有大幅提升。现在的学术产品是<a href="http://db.cs.yale.edu/hstore/index.html">H-Store</a>。</p>
+<p>第三个是正准备开发的供科学家使用的数据库。说道开发的动机时说，这是一个zero billion dollar industry。全场大笑。但是话锋一转又说如果有人能够拯救这个星球的话，大概是科学家了（if someone could save the planet, I guess it must be the scientists）。全场马上静下来。</p>
+<p>对Stonebraker和rational database有兴趣的可以继续看看这个<a href="http://www.sigmod.org/record/issues/0306/D1-DBP-stonebraker-final.pdf">访谈</a>。这个谈话挺有意思的，比如他谈到的博士研究方向是应用运筹学，但是为了取得tenure，他决定做一个数据库；他观察到的Berkeley和MIT的不同；还有很多关于数据库研究的看法等等。</p>
+<p>- <i>Written on Fri Dec  5 04:40:38 2008.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

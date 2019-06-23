@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="an old article" />
+        <title>MapReduce Vs. database</title>
+    </head>
+
+
+    <body>
+        <h1>MapReduce Vs. database</h1>
+
+        <p>Google搞的一个平行计算的架构惹来了两位数据库系统领域大牛的批评，就此引发了网络上一场巨大的争论。看了几篇文章，还有一些没看完的。各种各样技术牛人的观点值得借鉴。这里先列一个索引。</p>
+<ul>
+<li><a href="http://web.archive.org/web/20090519180035/http://www.databasecolumn.com/2008/01/mapreduce-a-major-step-back.html">MapReduce: A major step backwards</a> by David DeWitt and Michael Stonebraker</li>
+<li><a href="http://typicalprogrammer.com/?p=16">Relational Database Experts Jump The MapReduce Shark</a> by a MapReduce advocate</li>
+<li><a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php">Databases are hammers; MapReduce is a screwdriver.</a> from a Google employee</li>
+<li><a href="http://glinden.blogspot.com/2008/01/mapreduce-step-backwards.html">MapReduce a step backwards?</a> by Greg Linden</li>
+<li><a href="http://web.archive.org/web/20090630010353/http://www.databasecolumn.com/2008/01/mapreduce-continued.html">MapReduce II</a></li>
+</ul>
+<p>我现在暂时的看法是：这是一个经济的问题。parallel database技术上的确更先进，但是成本高（软件开发困难，对计算机性能要求高等等）。MapReduce就相对容易了，这技术才介绍没几年，apache已经有比较完善的开源软件（<a href="http://hadoop.apache.org/">Hadoop</a>）。因为清晰的架构，开发起来大概要快捷的多。而且因为良好的容错特性，对计算机的要求不需要很高了。从硬件到软件这成本就都降下来了。Engineering的问题很多时候也是economic的问题。</p>
+<p>另外两位大牛认为计算机的不同领域越来越孤立，大家对别人领域的研究都不关注。这个观点我太赞同了。</p>
+
+<p>- <i>Written on Tue Oct 14 09:36:23 2008.</i></p>
+
+
+
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="L2TP/IPsec @ CUHK" />
+        <title>How to L2TP/IPsec @ CUHK</title>
+    </head>
+
+
+    <body>
+        <h1>Set up VPN connection through L2TP/IPsec on Gentoo Linux</h1>
+        <p>As an alternative to PPTP, L2TP/IPsec provide more security for making VPN connection to CUHK network. There is already a guide on ITSC webpage showing the process to set up the connection on Windows XP. This page describe my configuration on Gentoo box to set up the connection.</p>
+        <p>First, you need to enable the following kernel options.</p>
+        <ul>
+            <li>Networking options</li>
+            <ul>
+                <li>IPsec user configuration interface</li>
+                <li>PF_KEY sockets</li>
+                <li>TCP/IP networking</li>
+                <ul>
+                    <li>IP: AH transformation</li>
+                    <li>IP: ESP transformation</li>
+                    <li>IP: IPComp transformation</li>
+                    <li>IP: tunnel transformation</li>
+                </ul>
+            </ul>
+            <li>Cryptographic options</li>
+            <ul>
+                <li>HAMC support</li>
+                <li>MD5 digest algorithm</li>
+                <li>SHA1 digest algorithm</li>
+                <li>DES and Triple DES EDE cipher algorithms</li>
+            </ul>
+        </ul>
+
+        <p>Next you need two packages, ipsec-tools and l2tpd, installed on your system. For Gentoo since both are already in Portage, it is quite easy to install them using 'emerge' command.</p>
+
+        <p>The following are my configuration files for IPsec and L2TP.</p>
+
+        <pre class="code">
+# cat /etc/racoon/racoon.conf
+path pre_shared_key "/etc/racoon/psk.txt";
+padding {
+        maximum_length 20;
+        randomize off;
+        strict_check off;
+        exclusive_tail off;
+}
+remote anonymous {
+        exchange_mode main;
+        doi ipsec_doi;
+        situation identity_only;
+        generate_policy on;
+        proposal_check obey;
+        proposal {
+                encryption_algorithm des;
+                hash_algorithm sha1;
+                authentication_method pre_shared_key;
+                dh_group 1;
+        }
+}
+sainfo anonymous {
+        lifetime time 28800 sec;
+        encryption_algorithm 3des;
+        authentication_algorithm hmac_md5;
+        compression_algorithm deflate;
+}
+        </pre>
+
+        <pre class="code">
+#cat /etc/racoon/psk.txt
+10.0.255.248    ipsec-vpn
+10.0.255.249    ipsec-vpn
+10.0.255.250    ipsec-vpn
+10.0.255.251    ipsec-vpn
+10.0.255.252    ipsec-vpn
+10.0.255.253    ipsec-vpn
+10.0.255.254    ipsec-vpn
+        </pre>
+
+        <pre class="code">
+# cat /etc/ipsec.conf
+#!/usr/sbin/setkey -f
+flush;
+spdflush;
+spdadd 10.0.219.121/18[1701] 0.0.0.0/0[0] any
+           -P out ipsec esp/transport//require;
+        </pre>
+
+        <pre class="code">
+# cat /etc/l2tpd/l2tpd.conf
+[global]
+port = 1701
+auth file = /etc/l2tpd/l2tp-secrets
+
+[lac connect]
+lns = ipsec-vpn.resnet.cuhk.edu.hk
+redial = yes
+require pap = yes
+ppp debug = no
+pppoptfile = /etc/ppp/options.l2tp
+        </pre>
+
+        <p>Alter stars in last line to your username.</p>
+        <pre class="code">
+# cat /etc/ppp/options.l2tp
+lock
+debug
+mtu 1000
+nobsdcomp
+nodeflate
+noaccomp
+nopcomp
+novj
+defaultroute
+name *******
+        </pre>
+
+        <p>Fill your username and password in the following two files.
+        For the column 'them', enter the remote address, i.e. ipsec-vpn.resnet.cuhk.edu.hk for CUHK ResNet.</p>
+        <pre class="code">
+# cat /etc/l2tpd/l2tp-secrets
+# Secrets for authenticating l2tp tunnels
+# us    them    secret
+
+# cat /etc/ppp/pap-secrets
+# Secrets for authentication using PAP
+# client        server  secret
+        </pre>
+
+        <p>Now you can fireup the processes for making connection.</p>
+
+        <pre class="code">
+/etc/init.d/racoon start
+/etc/init.d/l2tpd start
+echo "c connect" &gt; /var/run/l2tp-control
+        </pre>
+
+        <p>At this stage, you should have the connection up. You can modify the init script for l2tpd to include the last 'echo' line and add the two processes to default run level. In this way, you will automatically have the connection up after reboot.</p>
+        <p>A great thanks hereby to Yin Chaoyi who helped me a lot during setting up the connection.</p>
+
+        <p><b>Update</b>: As stated on <a href="http://www.cuhk.edu.hk/itsc/network/vpn/vpn.html">ITSC webpage</a>, PPTP was phased out on 1 Aug 2006. Therefore you had to use L2TP/IPsec to make connection to CUHK network now.</p>
+        <hr />
+        <p>Last updated Nov 30, 2006</p>
+        <!-- end -->
+
+        <!-- script for Google -->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34215872-1']);
+  _gaq.push(['_setDomainName', 'liuchuan.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>
+
