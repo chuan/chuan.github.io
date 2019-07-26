@@ -22,7 +22,7 @@ body { font-family: monospace; color: #ffffff; background-color: #333333; }
 </head>
 <body>
 <pre id='vimCodeElement'>
-<span class="Comment"># tmux config (updated Jun 3 2019 for 2.9)</span>
+<span class="Comment"># tmux config</span>
 
 <span class="Comment">## Shortcuts</span>
 
@@ -51,6 +51,12 @@ body { font-family: monospace; color: #ffffff; background-color: #333333; }
 <span class="Statement">bind</span><span class="Identifier"> -r</span> J <span class="Statement">resizep</span><span class="Identifier"> -D</span> <span class="Constant">1</span>
 <span class="Statement">bind</span><span class="Identifier"> -r</span> H <span class="Statement">resizep</span><span class="Identifier"> -L</span> <span class="Constant">1</span>
 <span class="Statement">bind</span><span class="Identifier"> -r</span> L <span class="Statement">resizep</span><span class="Identifier"> -R</span> <span class="Constant">1</span>
+
+<span class="Comment">### Copy mode </span>
+<span class="Statement">bind</span> P <span class="Statement">paste-buffer</span>
+<span class="Statement">bind-key</span><span class="Identifier"> -T</span> copy-mode-vi v <span class="Statement">send-keys</span><span class="Identifier"> -X</span> begin-selection
+<span class="Statement">bind-key</span><span class="Identifier"> -T</span> copy-mode-vi y <span class="Statement">send-keys</span><span class="Identifier"> -X</span> copy-selection
+<span class="Statement">bind-key</span><span class="Identifier"> -T</span> copy-mode-vi r <span class="Statement">send-keys</span><span class="Identifier"> -X</span> rectangle-toggle
 
 <span class="Comment">## Options</span>
 
@@ -94,13 +100,6 @@ body { font-family: monospace; color: #ffffff; background-color: #333333; }
 <span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">clock-mode-colour</span> colour135
 <span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">mode-style</span> <span class="Constant">&quot;fg=colour196,bg=colour238,bold&quot;</span>
 
-<span class="Comment">## Plugins</span>
-
-<span class="Statement">set</span><span class="Identifier"> -g</span> @plugin <span class="Constant">'tmux-plugins/tpm'</span>
-<span class="Statement">set</span><span class="Identifier"> -g</span> @plugin <span class="Constant">'tmux-plugins/tmux-copycat'</span>
-<span class="Statement">set</span><span class="Identifier"> -g</span> @plugin <span class="Constant">'tmux-plugins/tmux-resurrect'</span>
-
-<span class="Statement">run</span> <span class="Constant">'~/.tmux/plugins/tpm/tpm'</span>
 </pre>
 </body>
 </html>
