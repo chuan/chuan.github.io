@@ -15,7 +15,6 @@ body { font-family: monospace; color: #ffffff; background-color: #333333; }
 * { font-size: 1em; }
 .Comment { color: #80a0ff; }
 .Constant { color: #ffa0a0; }
-.Special { color: #ffa500; }
 .Identifier { color: #40ffff; }
 .Statement { color: #ffff60; font-weight: bold; }
 -->
@@ -25,30 +24,50 @@ body { font-family: monospace; color: #ffffff; background-color: #333333; }
 <pre id='vimCodeElement'>
 <span class="Comment"># tmux config (updated Jun 3 2019 for 2.9)</span>
 
-<span class="Statement">bind</span> | <span class="Statement">split-window</span><span class="Identifier"> -h</span>
-<span class="Statement">bind</span> - <span class="Statement">split-window</span><span class="Identifier"> -v</span>
+<span class="Comment">## Shortcuts</span>
+
+<span class="Comment">### Reloading conifg</span>
+<span class="Statement">bind</span> R <span class="Statement">source</span> ~/.tmux.conf \; <span class="Statement">display</span> <span class="Constant">&quot;.tmux.conf reloaded&quot;</span>
+
+<span class="Comment">### Multi-panes synchronization</span>
+<span class="Statement">bind</span> S <span class="Statement">set</span> <span class="Identifier">synchronize-panes</span>
+
+<span class="Comment">### Join the last active pane/window to the current window</span>
+<span class="Statement">bind</span> @ <span class="Statement">join-pane</span><span class="Identifier"> -s</span> !
+
+<span class="Comment">### More intuitive window splits (use current path)</span>
+<span class="Statement">bind</span> | <span class="Statement">split-window</span><span class="Identifier"> -h -c</span> <span class="Constant">'</span><span class="Identifier">#{pane_current_path}</span><span class="Constant">'</span>
+<span class="Statement">bind</span> - <span class="Statement">split-window</span><span class="Identifier"> -v -c</span> <span class="Constant">'</span><span class="Identifier">#{pane_current_path}</span><span class="Constant">'</span>
 <span class="Statement">unbind</span> <span class="Constant">'&quot;'</span>
 <span class="Statement">unbind</span> %
+<span class="Statement">bind</span> c <span class="Statement">new-window</span><span class="Identifier"> -c</span> <span class="Constant">'</span><span class="Identifier">#{pane_current_path}</span><span class="Constant">'</span>
 
-<span class="Statement">bind</span><span class="Identifier"> -n</span> <span class="Special">M-Left</span> <span class="Statement">select-pane</span><span class="Identifier"> -L</span>
-<span class="Statement">bind</span><span class="Identifier"> -n</span> <span class="Special">M-right</span> <span class="Statement">select-pane</span><span class="Identifier"> -R</span>
-<span class="Statement">bind</span><span class="Identifier"> -n</span> <span class="Special">M-Up</span> <span class="Statement">select-pane</span><span class="Identifier"> -U</span>
-<span class="Statement">bind</span><span class="Identifier"> -n</span> <span class="Special">M-Down</span> <span class="Statement">select-pane</span><span class="Identifier"> -D</span>
+<span class="Comment">### Pane bindings</span>
+<span class="Statement">bind</span> k <span class="Statement">selectp</span><span class="Identifier"> -U</span>
+<span class="Statement">bind</span> j <span class="Statement">selectp</span><span class="Identifier"> -D</span>
+<span class="Statement">bind</span> h <span class="Statement">selectp</span><span class="Identifier"> -L</span>
+<span class="Statement">bind</span> l <span class="Statement">selectp</span><span class="Identifier"> -R</span>
+<span class="Statement">bind</span><span class="Identifier"> -r</span> K <span class="Statement">resizep</span><span class="Identifier"> -U</span> <span class="Constant">1</span>
+<span class="Statement">bind</span><span class="Identifier"> -r</span> J <span class="Statement">resizep</span><span class="Identifier"> -D</span> <span class="Constant">1</span>
+<span class="Statement">bind</span><span class="Identifier"> -r</span> H <span class="Statement">resizep</span><span class="Identifier"> -L</span> <span class="Constant">1</span>
+<span class="Statement">bind</span><span class="Identifier"> -r</span> L <span class="Statement">resizep</span><span class="Identifier"> -R</span> <span class="Constant">1</span>
 
-<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">allow-rename</span> <span class="Constant">off</span>
-<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">visual-activity</span> <span class="Constant">off</span>
-<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">visual-bell</span> <span class="Constant">off</span>
-<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">visual-silence</span> <span class="Constant">off</span>
-<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">bell-action</span> <span class="Constant">none</span>
+<span class="Comment">## Options</span>
 
-<span class="Statement">set-window-option</span><span class="Identifier"> -g</span> <span class="Identifier">monitor-activity</span> <span class="Constant">off</span>
+<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">base-index</span> <span class="Constant">1</span>
+<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">pane-base-index</span> <span class="Constant">1</span>
+<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">history-limit</span> <span class="Constant">50000</span>
+<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">focus-events</span> <span class="Constant">on</span>
+<span class="Statement">set-option</span><span class="Identifier"> -g</span> <span class="Identifier">renumber-windows</span> <span class="Constant">on</span>
+
+<span class="Statement">set-window-option</span><span class="Identifier"> -g</span> <span class="Identifier">monitor-activity</span> <span class="Constant">on</span>
+<span class="Statement">set-window-option</span><span class="Identifier"> -g</span> <span class="Identifier">aggressive-resize</span> <span class="Constant">on</span>
 
 <span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">default-terminal</span> <span class="Constant">&quot;screen-256color&quot;</span>
 
-<span class="Comment">## DESIGN CHANGES</span>
+<span class="Comment">## Desgin &amp; look</span>
 
-<span class="Comment"># statusbar</span>
-<span class="Comment">#set -g status-interval 2</span>
+<span class="Comment">### statusbar</span>
 <span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-position</span> bottom
 <span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-style</span> <span class="Constant">'bg=colour234,fg=colour137,dim'</span>
 <span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-left</span> <span class="Constant">''</span>
@@ -56,24 +75,32 @@ body { font-family: monospace; color: #ffffff; background-color: #333333; }
 <span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-right-length</span> <span class="Constant">50</span>
 <span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">status-left-length</span> <span class="Constant">20</span>
 
-<span class="Comment"># messaging</span>
+<span class="Comment">### messaging</span>
 <span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">message-style</span> <span class="Constant">&quot;fg=black,bg=yellow&quot;</span>
 <span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">message-command-style</span> <span class="Constant">&quot;fg=blue,bg=black&quot;</span>
 
-<span class="Comment"># panes</span>
+<span class="Comment">### panes</span>
 <span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">pane-border-style</span> <span class="Constant">&quot;bg=colour235,fg=colour238&quot;</span>
 <span class="Statement">set</span><span class="Identifier"> -g</span> <span class="Identifier">pane-active-border-style</span> <span class="Constant">&quot;bg=colour236,fg=colour51&quot;</span>
 
-<span class="Comment"># window mode</span>
+<span class="Comment">### window mode</span>
 <span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">window-status-current-style</span> <span class="Constant">&quot;fg=colour81,bg=colour238,bold&quot;</span>
 <span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">window-status-current-format</span> <span class="Constant">' </span><span class="Identifier">#I</span><span class="Constant">#[fg=colour250]:#[fg=colour255]</span><span class="Identifier">#W</span><span class="Constant">#[fg=colour50]</span><span class="Identifier">#F</span><span class="Constant"> '</span>
 <span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">window-status-style</span> <span class="Constant">&quot;fg=colour138,bg=colour235,none&quot;</span>
 <span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">window-status-format</span> <span class="Constant">' </span><span class="Identifier">#I</span><span class="Constant">#[fg=colour237]:#[fg=colour250]</span><span class="Identifier">#W</span><span class="Constant">#[fg=colour244]</span><span class="Identifier">#F</span><span class="Constant"> '</span>
 <span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">window-status-bell-style</span> <span class="Constant">&quot;fg=colour255,bg=colour1,bold&quot;</span>
 
-<span class="Comment"># modes</span>
+<span class="Comment">### modes</span>
 <span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">clock-mode-colour</span> colour135
 <span class="Statement">setw</span><span class="Identifier"> -g</span> <span class="Identifier">mode-style</span> <span class="Constant">&quot;fg=colour196,bg=colour238,bold&quot;</span>
+
+<span class="Comment">## Plugins</span>
+
+<span class="Statement">set</span><span class="Identifier"> -g</span> @plugin <span class="Constant">'tmux-plugins/tpm'</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> @plugin <span class="Constant">'tmux-plugins/tmux-copycat'</span>
+<span class="Statement">set</span><span class="Identifier"> -g</span> @plugin <span class="Constant">'tmux-plugins/tmux-resurrect'</span>
+
+<span class="Statement">run</span> <span class="Constant">'~/.tmux/plugins/tpm/tpm'</span>
 </pre>
 </body>
 </html>
