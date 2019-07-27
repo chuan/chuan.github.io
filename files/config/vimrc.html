@@ -13,37 +13,20 @@
 pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #333333; }
 body { font-family: monospace; color: #ffffff; background-color: #333333; }
 * { font-size: 1em; }
+.PreProc { color: #ff80ff; }
+.Comment { color: #80a0ff; }
 .Constant { color: #ffa0a0; }
 .Special { color: #ffa500; }
 .Identifier { color: #40ffff; }
-.PreProc { color: #ff80ff; }
-.Type { color: #60ff60; font-weight: bold; }
-.Comment { color: #80a0ff; }
 .Statement { color: #ffff60; font-weight: bold; }
+.Type { color: #60ff60; font-weight: bold; }
 .Normal { color: #ffffff; background-color: #333333; padding-bottom: 1px; }
 -->
 </style>
 </head>
 <body>
 <pre id='vimCodeElement'>
-<span class="Comment">&quot; Chuan's vim config</span>
-<span class="Comment">&quot; Part are adopted from the example config at:</span>
-<span class="Comment">&quot; /usr/share/vim/vim64/vimrc_example.vim</span>
-<span class="Comment">&quot; Last modifid: Jun 2019</span>
-
-<span class="Comment">&quot; First install vim-plug (<a href="https://github.com/junegunn/vim-plug)">https://github.com/junegunn/vim-plug)</a> via the following command:</span>
-<span class="Comment">&quot; Unix</span>
-<span class="Comment">&quot;   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \</span>
-<span class="Comment">&quot;       <a href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim">https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</a></span>
-<span class="Comment">&quot; Windows (PowerShell)</span>
-<span class="Comment">&quot;   md ~\vimfiles\autoload</span>
-<span class="Comment">&quot;   $uri = '<a href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim">https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</a>'</span>
-<span class="Comment">&quot;   (New-Object Net.WebClient).DownloadFile(</span>
-<span class="Comment">&quot;     $uri,</span>
-<span class="Comment">&quot;     $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(</span>
-<span class="Comment">&quot;       </span><span class="Constant">&quot;~\vimfiles\autoload\plug.vim&quot;</span>
-<span class="Comment">&quot;     )</span>
-<span class="Comment">&quot;   )</span>
+<span class="Comment">&quot; vim config</span>
 
 <span class="Comment">&quot; Initialize plugin system</span>
 <span class="Statement">call</span> plug#<span class="Normal">begin</span><span class="Special">(</span><span class="Constant">'~/.vim/plugged'</span><span class="Special">)</span>
@@ -57,18 +40,16 @@ Plug <span class="Constant">'vim-airline/vim-airline'</span>
 <span class="Statement">let</span> <span class="Identifier">g:airline_theme</span><span class="Statement">=</span><span class="Constant">'dark'</span>
 
 <span class="Comment">&quot; Javascript</span>
-Plug <span class="Constant">'pangloss/vim-javascript'</span>
-Plug <span class="Constant">'elzr/vim-json'</span>
+<span class="Comment">&quot;Plug 'pangloss/vim-javascript'</span>
+<span class="Comment">&quot;Plug 'elzr/vim-json'</span>
 
 <span class="Comment">&quot; Golang</span>
-Plug <span class="Constant">'fatih/vim-go'</span>
+<span class="Comment">&quot;Plug 'fatih/vim-go'</span>
 
 <span class="Statement">call</span> plug#<span class="Normal">end</span><span class="Special">()</span>
 
 
-<span class="Comment">&quot; Use Vim settings, rather then Vi settings (much better!).</span>
-<span class="Comment">&quot; This must be first, because it changes other options as a side effect.</span>
-<span class="Comment">&quot; Also required by Vundle</span>
+<span class="Comment">&quot; Use Vim settings</span>
 <span class="Statement">set</span> <span class="PreProc">nocompatible</span>
 
 <span class="Comment">&quot; Enable filetype setting</span>
